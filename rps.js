@@ -110,6 +110,7 @@ function gameState() {
 		alert(`Sorry! You lost, score was: ${winCount} to ${lossCount}!`);
 		resetGame();
 	}
+	
 	// reset the game if it is over
 
 
