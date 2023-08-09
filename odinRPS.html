@@ -1,61 +1,53 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="utf-8">
 
-    <title>Rock Paper Scissors Game</title>
+<head>
+  <meta charset="utf-8">
 
-    <style>
-      html {
-        font-family: sans-serif;
-      }
-      body {
-        width: 50%;
-        max-width: 800px;
-        min-width: 480px;
-        margin: 0 auto;
-      }
-      .lastResult {
-        color: white;
-        padding: 3px;
-      }
-      
-    </style>
-  </head>
+  <title>Rock Paper Scissors Game</title>
 
-  <body>
+  <link rel="stylesheet" href="style.css">
 
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="header">
+      <div class="logo">
+        Choose your weapon
+      </div>
+      <div class="menu">
+        <ul>
+          <li id="rockSelect">🪨</li>
+          <li id="paperSelect">📜</li>
+          <li id="scissorsSelect">✂️</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sidebar">
+      <div class="side-content" id="roundCounter">
+        Game Start
+      </div>
+      <div class="side-content" id="humanScore">🧑 score: 0
+      </div>
+      <div class="side-content" id="compScore">🤖 Score: 0
+      </div>
+      <div class="side-content" id="numDraws">Draws: 0
+      </div>
+    </div>
+    <div class="article">
+      <div class="card">
+        <p class="title" id="humanChoice">Ready?</p>
+      </div>
+      <div class="card">
+        <p class="title" id="compChoice">Start</p>
+      </div>
+    </div>
+  </div>
   <script src="rps.js"></script>
 
-    <div>
-      ROCK
-    </div>
 
-    <div>
-      PAPER
-    </div>
-
-    <div>
-      SCISSORS
-    </div>
-
-    <!--
- <h1>Number guessing game</h1>
-
-      <p>We have selected a random number between 1 and 100. See if you can guess it in 10 turns or less. We'll tell you if your guess was too high or too low.</p>
-
-<div class="form">
-  <label for="guessField">Enter a guess: </label>
-  <input type="text" id="guessField" class="guessField">
-  <input type="submit" value="Submit guess" class="guessSubmit">
-</div>
-
-<div class="resultParas">
-  <p class="guesses"></p>
-  <p class="lastResult"></p>
-  <p class="lowOrHi"></p>
-</div>
--->
 
 </body>
 

@@ -2,10 +2,36 @@
 
 let winCount = 0;
 let lossCount = 0;
+let drawCount = 0;
+
+document.getElementById("rockSelect").addEventListener("click", function () {
+	let pChoice = "rock";
+	console.log(pChoice);
+	playRound(pChoice,getComputerChoice());
+	gameState();
+});
+
+document.getElementById("paperSelect").addEventListener("click", function () {
+	let pChoice = "paper";
+	console.log(pChoice);
+	playRound(pChoice,getComputerChoice());
+	gameState();
+
+});
+
+document.getElementById("scissorsSelect").addEventListener("click", function () {
+	let pChoice = "scissors";
+	console.log(pChoice);
+	playRound(pChoice,getComputerChoice());
+	gameState();
+
+});
 
 function getComputerChoice() {
-	const choices = ["rock", "paper", "scissors"];
-	return choices[Math.floor(Math.random()*choices.length)];
+	const choices = ["🪨", "📜", "✂️"];
+	let cChoice = choices[Math.floor(Math.random() * choices.length)];
+	document.getElementById("compChoice").innerHTML = cChoice;
+	return cChoice;
 }
 //comments here
 function playRound(playerSelection, computerSelection) {
@@ -14,16 +40,15 @@ function playRound(playerSelection, computerSelection) {
 	switch (playerSelection) {
 		case "paper":
 			//swtich on computer's choice
+			document.getElementById("humanChoice").innerHTML = "📜";
 			switch (computerSelection) {
-				case "paper":
-					resultOutput = "That was a tie!";
+				case "📜":
+					drawCount++;
 					break;
-				case "rock":
-					resultOutput = "You win! " + playerSelection + " beats " + computerSelection + "!";
+				case "🪨":
 					winCount++;
 					break;
-				case "scissors":
-					resultOutput = "You lose! " + playerSelection + " loses to " + computerSelection + "!";
+				case "✂️":
 					lossCount++;
 					break;
 
@@ -31,66 +56,75 @@ function playRound(playerSelection, computerSelection) {
 			break;
 
 		case "rock":
+			document.getElementById("humanChoice").innerHTML = "🪨";
 			switch (computerSelection) {
-				case "rock":
-					resultOutput = "That was a tie!";
+				case "🪨":
+					drawCount++;
 					break;
-				case "scissors":
-					resultOutput = "You win! " + playerSelection + " beats " + computerSelection + "!";
+				case "✂️":
 					winCount++;
 					break;
-				case "paper":
-					resultOutput = "You lose! " + playerSelection + " loses to " + computerSelection + "!";
+				case "📜":
 					lossCount++;
 					break;
 			}
-		break;
+			break;
 
 		case "scissors":
+			document.getElementById("humanChoice").innerHTML = "✂️";
 			switch (computerSelection) {
-				case "scissors":
-					resultOutput = "That was a tie!";
+				case "✂️":
+					drawCount++;
 					break;
-				case "paper":
-					resultOutput = "You win! " + playerSelection + " beats " + computerSelection + "!";
+				case "📜":
 					winCount++;
 					break;
-				case "rock":
-					resultOutput = "You lose! " + playerSelection + " loses to " + computerSelection + "!";
+				case "🪨":
 					lossCount++;
 					break;
 			}
-		break;
+			break;
 
 		default:
 			resultOutput = "Input error";
 			break;
 	}
-	return resultOutput;
+	return;
 }
 
-function getPlayerChoice() {
-	pChoice = prompt("Select rock, paper, or scissors.");
-	pChoice = pChoice.toLowerCase();
-	//allows for shorthand
-	switch(pChoice) {
-		case "r":
-			pChoice = "rock";
-			break;
-		case "p":
-			pChoice = "paper";
-			break;
-		case "s":
-			pChoice = "scissors";
-			break;
+
+function gameState() {
+	//update the DOM with the current game state
+	
+	document.getElementById("roundCounter").innerHTML = "Round " + (winCount + lossCount + drawCount);
+	document.getElementById("humanScore").innerHTML = "🧑 score: " + (winCount);
+	document.getElementById("compScore").innerHTML = "🤖 Score: " + (lossCount);
+	document.getElementById("numDraws").innerHTML = "Draws: " + (drawCount);
+
+	//check for win or loss
+	if (winCount == 5) {
+		alert(`Congrats! You win, score was: ${winCount} to ${lossCount}!`);
+		resetGame();
 	}
-	return pChoice;
+	else if (lossCount == 5) {
+		alert(`Sorry! You lost, score was: ${winCount} to ${lossCount}!`);
+		resetGame();
+	}
+	// reset the game if it is over
+
+
 }
 
+function resetGame() {
+	location.reload();
+
+}
+
+/*
 function playGame() {
 
 	//if either losses or wins gets to 5, then it breaks the loop
-	while(lossCount < 5 && winCount < 5) {
+	while (lossCount < 5 && winCount < 5) {
 		const playerSelection = getPlayerChoice();
 		const computerSelection = getComputerChoice();
 		console.log(computerSelection);
@@ -102,3 +136,4 @@ function playGame() {
 
 }
 playGame();
+*/
